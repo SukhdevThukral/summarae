@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "Summarae",
+  "version": "1.0",
+  "description": "Simple AI summarizer extension",
+  "action": {
+    "default_popup": "src/popup/index.html",
+    "default_title": "Summarae"
+  },
+  "permissions": [],
+  "host_permissions": []
+}
