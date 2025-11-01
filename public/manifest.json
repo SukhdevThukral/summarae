@@ -7,6 +7,14 @@
     "default_popup": "src/popup/index.html",
     "default_title": "Summarae"
   },
-  "permissions": [],
-  "host_permissions": []
+  "permissions": ["scripting", "activeTab"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js" : ["content/content.js"]
+    }
+  ]
 }
