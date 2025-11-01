@@ -8,11 +8,21 @@ export default defineConfig({
     outDir: 'dist',
     rollupOptions: {
       input: {
-        popup: resolve(__dirname, 'src/popup/index.html')
+        popup: resolve(__dirname, 'src/popup/index.html'),
+        content: resolve(__dirname, 'src/content/content.ts'),
       },
       output: {
-        entryFileNames: 'popup/[name].js',
-        assetFileNames: 'popup/[name].[ext]'
+        entryFileNames: (chunk) => {
+          if (chunk.name === 'content') return 'content/content.js'
+          return 'popup/[name].js'
+        },
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name?.endsWith('.css')) {
+            if (assetInfo.name.includes('content')) return 'content/[name].[ext]'
+            return 'popup/[name].[ext]'
+          }
+          return '[name].[ext]'
+        }
       }
     }
   }
