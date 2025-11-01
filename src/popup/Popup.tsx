@@ -7,10 +7,11 @@ function App(){
     setLoading(true);
     setSummary("");
 
+    //chrome types required
     chrome.tabs.query({active: true, currentWindow: true}, (tabs)=>{
       chrome.tabs.sendMessage(
         tabs[0].id!, {action:"summarise"},
-        (response)=> {
+        (_response)=> { //might use later for real AI, tsx will ignore _ vars
           setTimeout(()=>{
             setSummary("this is your dummy summary(ai soon enuf...");
             setLoading(false);
