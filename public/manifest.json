@@ -4,7 +4,7 @@
   "version": "1.0",
   "description": "Simple AI summarizer extension",
   "action": {
-    "default_popup": "src/popup/index.html",
+    "default_popup": "popup/index.html",
     "default_title": "Summarae"
   },
   "permissions": ["activeTab","scripting"],
