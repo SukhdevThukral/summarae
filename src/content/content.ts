@@ -5,7 +5,9 @@
 
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => { // callback function whenever msg is rcvd
   if (message.action ==="summarise") {
-    console.log("request  rcvd by popup!");
-    sendResponse({ status:"ok" });
+    console.log("request rcvd by popup for summary!");
+    sendResponse({ status:"ok", text: document.body.innerText});
+
+    return true;
   }
 });
