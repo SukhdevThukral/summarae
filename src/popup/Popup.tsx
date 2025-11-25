@@ -1,4 +1,6 @@
 import {useState} from "react";
+import "./index.css";
+
 
 function App(){
   const [loading, setLoading] = useState(false);
@@ -13,7 +15,7 @@ function App(){
         tabs[0].id!, {action:"summarise"},
         (_response)=> { //might use later for real AI, tsx will ignore _ vars
           setTimeout(()=>{
-            setSummary("this is your dummy summary(ai soon enuf...");
+            setSummary("this is your dummy summary(ai soon enuf...)");
             setLoading(false);
           }, 1500);
         }
@@ -22,7 +24,7 @@ function App(){
   };
 
   return (
-    <div className="p-4 w-80 text-gray-900">
+    <div className="w-">
       <h1 className="text-xl font-bold text-center mb-3">Summarae</h1>
 
       <button onClick={handleSummarise}
