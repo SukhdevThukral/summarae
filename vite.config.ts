@@ -4,6 +4,7 @@ import { resolve } from 'path'
 
 export default defineConfig({
   plugins: [react()],
+  publicDir: false,
   build: {
     outDir: 'dist',
     emptyOutDir: true,
@@ -15,16 +16,18 @@ export default defineConfig({
       },
       output: {
         entryFileNames: (chunk) => {
-          if (chunk.name === 'content') return 'content/content.js'
+          if (chunk.name === 'content') return 'content/content.js';
           if (chunk.name === 'background') return 'background.js';
-          return 'popup/[name].js'
+          if (chunk.name === 'popup') return 'popup/popup.js';
+          return '[name].js'
         },
-        assetFileNames: (assetInfo) => {
-          if (assetInfo.name?.endsWith('.css')) {
-            if (assetInfo.name.includes('content')) return 'content/[name].[ext]'
-            return 'popup/[name].[ext]'
-          }
-          return '[name].[ext]'
+        assetFileNames: (asset) => {
+          if (asset.name?.endsWith('.css')) return 'popup/[name].[ext]';
+            return '[name].[ext]'
+          },
+        chunkFileNames: (chunk) => {
+          if (chunk.name === "popup") return "popup/popup.js";
+          return '[name].js';
         }
       }
     }
